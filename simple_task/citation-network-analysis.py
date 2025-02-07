@@ -126,7 +126,9 @@ if __name__ == '__main__':
 
     plot_in_degree_distribution(citation_graph)
 
-    subgraphs = extract_random_subgraph(citation_graph, min_node_count=300, num_subgraphs=5)
+    # subgraphs = extract_random_subgraph(citation_graph, min_node_count=300, num_subgraphs=5)
+    subgraphs = extract_random_subgraph(citation_graph)
+
     # print(subgraphs)
 
     node_degree_stats = calculate_node_degree_stats(subgraphs)
