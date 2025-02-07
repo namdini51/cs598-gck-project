@@ -9,19 +9,30 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def convert_data_to_graph(file):
+def convert_data_to_graph(file, split_length=100000):
     """
     This function converts the input data into a networkx graph and prints edge/node counts
     :return: networkx graph object
     """
-    df = pd.read_csv(file)
+    # df = pd.read_csv(file)
+    #
+    # edge_list = df[['citing', 'cited']].values.tolist()
+    #
+    # G = nx.DiGraph() # directed graph (citing paper -> cited paper)
+    # G.add_edges_from(edge_list)
+    # edge_count = G.number_of_edges()
+    # node_count = G.number_of_nodes()
 
-    edge_list = df[['citing', 'cited']].values.tolist()
+    G = nx.DiGraph()  # Directed graph (citing paper -> cited paper)
 
-    G = nx.DiGraph() # directed graph (citing paper -> cited paper)
-    G.add_edges_from(edge_list)
+    # process by split data (handle OOM)
+    for split in pd.read_csv(file, chunksize=split_length):
+        edge_list = zip(split["citing"], split["cited"])  # Process only this chunk
+        G.add_edges_from(edge_list)
+
     edge_count = G.number_of_edges()
     node_count = G.number_of_nodes()
+
     print("Number of edges: ", edge_count)
     print("Number of nodes: ", node_count)
 
