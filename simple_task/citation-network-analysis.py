@@ -35,10 +35,13 @@ def plot_in_degree_distribution(G, output_path="./in_degree_distribution.png"):
     :param output_path: directory path to save output
     :return: None
     """
-    in_degrees = dict(G.in_degree())
+
+    in_degree_list = []
+    for node, degree in G.in_degree():
+        in_degree_list.append(degree)
 
     fig, ax = plt.subplots(figsize=(10, 6))
-    ax.hist(in_degrees.values(), bins=30, edgecolor='black', color="green", log=True) # log scale
+    ax.hist(in_degree_list, bins=30, edgecolor='black', color="green", log=True) # log scale
 
     ax.set_xlabel("In-Degree (i.e., number of received citation)")
     ax.set_ylabel("Frequency")
@@ -57,7 +60,7 @@ def extract_random_subgraph(G, num_subgraphs=5, min_node_count=100000):
     :return: list of subgraphs
     """
 
-    weak_comp = list(nx.weakly_connected_components(G))
+    weak_comp = nx.weakly_connected_components(G)
 
     weak_comp_list = []
     for comp in weak_comp:
@@ -70,7 +73,7 @@ def extract_random_subgraph(G, num_subgraphs=5, min_node_count=100000):
     # convert components to graphs
     subgraphs = []
     for comp in selected_comp:
-        subgraphs.append(G.subgraph(comp).copy())
+        subgraphs.append(G.subgraph(comp))
 
     return subgraphs
 
