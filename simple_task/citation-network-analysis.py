@@ -122,12 +122,12 @@ def calculate_node_degree_stats(subgraphs):
 if __name__ == '__main__':
     file_path = "./data/sample_open_citations_curated.csv"
     citation_graph = convert_data_to_graph(file_path)
-    print(citation_graph)
+    # print(citation_graph)
 
     plot_in_degree_distribution(citation_graph)
 
     subgraphs = extract_random_subgraph(citation_graph, min_node_count=300, num_subgraphs=5)
-    print(subgraphs)
+    # print(subgraphs)
 
     node_degree_stats = calculate_node_degree_stats(subgraphs)
     for stats in node_degree_stats:
