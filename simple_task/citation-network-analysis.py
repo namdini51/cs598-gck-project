@@ -60,9 +60,9 @@ def extract_random_subgraph(G, num_subgraphs=5, min_node_count=100000):
     weak_comp = list(nx.weakly_connected_components(G))
 
     weak_comp_list = []
-    for wcc in weak_comp:
-        if len(wcc) >= min_node_count:   # filter components that have more nodes than minimum node count
-            weak_comp_list.append(wcc)
+    for comp in weak_comp:
+        if len(comp) >= min_node_count:   # filter components that have more nodes than minimum node count
+            weak_comp_list.append(comp)
 
     # randomly select
     selected_comp = random.sample(weak_comp_list, min(num_subgraphs, len(weak_comp_list)))
