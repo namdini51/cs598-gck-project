@@ -2,6 +2,7 @@
 This python module conducts simple network tasks on citation network based on networkx package.
 """
 
+import csv
 import random
 import networkx as nx
 import pandas as pd
@@ -14,21 +15,30 @@ def convert_data_to_graph(file, split_length=100000):
     This function converts the input data into a networkx graph and prints edge/node counts
     :return: networkx graph object
     """
-    # df = pd.read_csv(file)
-    #
-    # edge_list = df[['citing', 'cited']].values.tolist()
-    #
-    # G = nx.DiGraph() # directed graph (citing paper -> cited paper)
-    # G.add_edges_from(edge_list)
-    # edge_count = G.number_of_edges()
-    # node_count = G.number_of_nodes()
 
     G = nx.DiGraph()  # Directed graph (citing paper -> cited paper)
 
-    # process by split data (handle OOM)
-    for split in pd.read_csv(file, chunksize=split_length):
-        edge_list = zip(split["citing"], split["cited"])  # Process only this chunk
-        G.add_edges_from(edge_list)
+    # dtype_spec = {"citing": "str", "cited": "str"}
+    #
+    # # process by split data (handle OOM)
+    # split_count = 0
+    # for split in pd.read_csv(file, chunksize=split_length, dtype=dtype_spec):
+    #     edge_list = zip(split["citing"], split["cited"])  # Process only this chunk
+    #     G.add_edges_from(edge_list)
+    #     split_count += 1
+
+    with open(file, "r") as f:
+        dataset = csv.reader(f)
+        header = next(dataset)
+        citing_idx = header.index("citing")
+        cited_idx = header.index("cited")
+
+        count = 0
+        for row in dataset:
+            G.add_edge(row[citing_idx], row[cited_idx])
+            count += 1
+            if count % 1000000 == 0:
+                print(f"Checkpoint: Processed {count} edges...", flush=True)
 
     edge_count = G.number_of_edges()
     node_count = G.number_of_nodes()
