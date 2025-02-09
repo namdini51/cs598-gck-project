@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def convert_data_to_graph_nk(file):
+def convert_data_to_graph(file):
     """
     This function converts the input data into a networkit graph and prints edge/node counts
     :return: networkit graph object and node dictionary for reference
@@ -45,7 +45,7 @@ def convert_data_to_graph_nk(file):
             G.addEdge(node_dict[start], node_dict[end])
 
             count += 1
-            if count % 10000000 == 0:
+            if count % 100000000 == 0:
                 print(f"Checkpoint: Processed {count} edges...", flush=True)
 
     edge_count = G.numberOfEdges()
@@ -65,8 +65,7 @@ def plot_in_degree_distribution(G, output_path="./in_degree_distribution.png"):
     :return: None
     """
 
-    in_degree = nk.centrality.DegreeCentrality(G, outDeg=False)
-    in_degree.run()
+    in_degree = nk.centrality.DegreeCentrality(G, outDeg=False).run()
     in_degree_list = in_degree.scores()
 
     unique, counts = np.unique(in_degree_list, return_counts=True)
@@ -87,19 +86,24 @@ def plot_in_degree_distribution(G, output_path="./in_degree_distribution.png"):
 
 def extract_random_subgraph(G, num_subgraphs=5, min_node_count=100000):
     """
-    This function randomly extract connected components from a given graph and converts them into subgraphs
+    This function randomly extract subgraph by BFS method
     :param G: networkit graph object
     :param num_subgraphs: number of needed subgraphs
     :param min_node_count: minimum number of nodes in a subgraph
+    :param radius: number of hops a node expands
     :return: list of subgraphs
     """
 
     components = nk.components.WeaklyConnectedComponents(G).run().getComponents()
 
+    print(f"Checkpoint: Found {len(components)} total connected components.", flush=True)
+
     comp_list = []
     for comp in components:
         if len(comp) >= min_node_count:   # filter components that have more nodes than minimum node count
             comp_list.append(comp)
+
+    print(f"Checkpoint: {len(comp_list)} components meet the size requirement.", flush=True)
 
     # randomly select
     selected_comp = random.sample(comp_list, min(num_subgraphs, len(comp_list)))
@@ -110,6 +114,7 @@ def extract_random_subgraph(G, num_subgraphs=5, min_node_count=100000):
         subgraph = nk.graphtools.subgraphFromNodes(G, comp)
         subgraph_list.append(subgraph)
 
+    print("Checkpoint: Subgraph extraction complete!", flush=True)
     return subgraph_list
 
 
@@ -125,41 +130,31 @@ def calculate_node_degree_stats(subgraphs):
     node_degree_stats = []
 
     for g in subgraphs:
-        in_degree = nk.centrality.DegreeCentrality(g, outDeg=False)
-        in_degree.run()
-        in_degree_list = in_degree.scores()
+        in_degree = nk.centrality.DegreeCentrality(g, outDeg=False).run()
+        in_degree_list = np.array(in_degree.scores())
 
-        total_degree = nk.centrality.DegreeCentrality(g, outDeg=True)
-        total_degree.run()
-        total_degree_list = total_degree.scores()
+        out_degree = nk.centrality.DegreeCentrality(g, outDeg=True).run()
+        out_degree_list = np.array(out_degree.scores())
 
-        # in-degree calculation
-        in_deg_min = min(in_degree_list)
-        in_deg_max = max(in_degree_list)
-        in_deg_median = float(np.median(in_degree_list))
+        total_degree_list = in_degree_list + out_degree_list
 
-        # total degree calculation
-        total_deg_min = min(total_degree_list)
-        total_deg_max = max(total_degree_list)
-        total_deg_median = float(np.median(total_degree_list))
-
-        subgraph_node_deg_stats = {
-            "Minimum In-Degree": in_deg_min,
-            "Maximum In-Degree": in_deg_max,
-            "Median In-Degree": in_deg_median,
-            "Minimum Total Degree": total_deg_min,
-            "Maximum Total Degree": total_deg_max,
-            "Median Total Degree": total_deg_median
+        stats = {
+            "Minimum In-Degree": np.min(in_degree_list),
+            "Maximum In-Degree": np.max(in_degree_list),
+            "Median In-Degree": np.median(in_degree_list),
+            "Minimum Total Degree": np.min(total_degree_list),
+            "Maximum Total Degree": np.max(total_degree_list),
+            "Median Total Degree": np.median(total_degree_list)
         }
 
-        node_degree_stats.append(subgraph_node_deg_stats)
+        node_degree_stats.append(stats)
 
     return node_degree_stats
 
 
 if __name__ == '__main__':
     file_path = "./data/sample_open_citations_curated.csv"
-    citation_graph, node_dict = convert_data_to_graph_nk(file_path)
+    citation_graph, node_dict = convert_data_to_graph(file_path)
     # print(citation_graph)
 
     plot_in_degree_distribution(citation_graph)
