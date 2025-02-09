@@ -69,15 +69,20 @@ def plot_in_degree_distribution(G, output_path="./in_degree_distribution.png"):
     in_degree.run()
     in_degree_list = in_degree.scores()
 
-    fig, ax = plt.subplots(figsize=(15, 10))
-    ax.hist(in_degree_list, bins=30, edgecolor='black', color="green", log=True) # log scale
+    unique, counts = np.unique(in_degree_list, return_counts=True)
 
-    ax.set_xlabel("In-Degree (i.e., number of received citation)")
-    ax.set_ylabel("Frequency")
-    ax.set_title("In-Degree Distribution")
-    # plt.show()
+    plt.figure(figsize=(10, 6))
+    plt.scatter(unique, counts, color="blue", alpha=0.7)
 
-    fig.savefig(output_path)
+    plt.xscale("log")
+    plt.yscale("log")
+
+    plt.xlabel("In-Degree (Log Scale)")
+    plt.ylabel("Frequency (Log Scale)")
+    plt.title("In-Degree Distribution (Log-Log Scatter Plot)")
+    plt.grid(True, linestyle="--", linewidth=0.5)
+
+    plt.savefig(output_path)
 
 
 def extract_random_subgraph(G, num_subgraphs=5, min_node_count=100000):
