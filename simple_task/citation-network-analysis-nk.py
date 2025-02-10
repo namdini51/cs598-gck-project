@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 def convert_data_to_graph(file):
     """
     This function converts the input data into a networkit graph and prints edge/node counts
+    :param file: input file path
     :return: networkit graph object and node dictionary for reference
     """
 
@@ -86,11 +87,10 @@ def plot_in_degree_distribution(G, output_path="./in_degree_distribution.png"):
 
 def extract_random_subgraph(G, num_subgraphs=5, min_node_count=100000):
     """
-    This function randomly extract subgraph by BFS method
+    This function randomly extract subgraph based on weakly connected component
     :param G: networkit graph object
     :param num_subgraphs: number of needed subgraphs
     :param min_node_count: minimum number of nodes in a subgraph
-    :param radius: number of hops a node expands
     :return: list of subgraphs
     """
 
