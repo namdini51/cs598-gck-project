@@ -1,4 +1,4 @@
-## Very Basic Network Arithmetic:
+## Basic Network Arithmetic:
 - Please perform the following operations on this edgelist file. https://databank.illinois.edu/datafiles/c3y68/download
 - Some useful metadata is available at https://databank.illinois.edu/datasets/IDB-6389862
 - Report the number of edges and nodes
