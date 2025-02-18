@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 def convert_data_to_graph(file):
     """
     This function converts the input data into a networkit graph and prints edge/node counts
-    :param file: input file path
     :return: networkit graph object and node dictionary for reference
     """
 
@@ -87,7 +86,7 @@ def plot_in_degree_distribution(G, output_path="./in_degree_distribution.png"):
 
 def extract_random_subgraph(G, num_subgraphs=5, min_node_count=100000):
     """
-    This function randomly extract subgraph based on weakly connected component
+    This function randomly extract subgraph by weakly connected component
     :param G: networkit graph object
     :param num_subgraphs: number of needed subgraphs
     :param min_node_count: minimum number of nodes in a subgraph
@@ -153,13 +152,16 @@ def calculate_node_degree_stats(subgraphs):
 
 
 if __name__ == '__main__':
-    file_path = "./data/sample_open_citations_curated.csv"
+    # file_path = "./data/sample_open_citations_curated.csv" # sample data directory
+    file_path = "/scratch/donginn2/CS598/assignment-1/open_citations_curated.csv" # original data directory
     citation_graph, node_dict = convert_data_to_graph(file_path)
     # print(citation_graph)
 
     plot_in_degree_distribution(citation_graph)
 
-    subgraphs = extract_random_subgraph(citation_graph, min_node_count=300, num_subgraphs=5)
+    # subgraphs = extract_random_subgraph(citation_graph, min_node_count=300, num_subgraphs=5)
+    subgraphs = extract_random_subgraph(citation_graph)
+
     # print(subgraphs)
 
     node_degree_stats = calculate_node_degree_stats(subgraphs)
