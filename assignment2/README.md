@@ -1,0 +1,13 @@
+## Clustering:
+- Cluster the six networks (edge list format in CC) with Leiden algorithm as follows:
+  - Leiden CPM 0.01
+  - Leiden CPM 0.001
+  - Leiden Modularity
+- Report for ***each network and clustering*** results as follows:
+  - Count of nodes and edges
+  - Count and percentage of singleton and non-singleton clusters
+  - Cluster size distribution for non-singleton clusters (min, quartiles, median, max sizes)
+  - Node coverage (the coverage of nodes in non-singleton clusters relative to the total number of nodes in the networks)
+- Report run times for each clustering. A single table is adequate.
+- Report personal preference for Leiden CPM vs. Modularity
+- Report which cluster quality measures do you recommend
