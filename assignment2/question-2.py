@@ -5,6 +5,9 @@ This python module applies leiden algorithm (Traag et al., 2019) on iGraph netwo
 import igraph as ig
 import leidenalg as la
 import numpy as np
+import matplotlib.pyplot as plt
+
+import os
 import sys
 import time
 
@@ -36,34 +39,59 @@ def run_leiden_clustering(G, quality_function):
     return clusters
 
 
-def compute_clustering_stats(clusters):
+def compute_clustering_stats(clusters, plot_boxplot=False, plot_path="./cluster_size_dist.png"):
     """
-    This function computes the count and percentage of singleton and non-singleton clusters
+    This function computes basic stats (count and percentage) of singleton and non-singleton clusters.
+    It also computes the size distribution of non-singleton clusters (plotting is also available using the plot_boxplot flag).
     :param clusters: list of clusters extracted from the run_leiden_clustering function
-    :return: count and percentage of singleton and non-singleton clusters
+    :param plot_boxplot: flag to enable plotting
+    :param plot_path: default path and file name to save the plot
+    :return: basic stats and size distribution
     """
-    singleton_count = 0
-    nonsingleton_count = 0
+    nonsingleton_list = []
 
     for cluster in clusters:
-        if len(cluster) == 1:    # only has one node
-            singleton_count += 1
-        else:
-            nonsingleton_count += 1
+        if len(cluster) > 1:
+            nonsingleton_list.append(len(cluster))
 
-    total_cluster_count = singleton_count + nonsingleton_count
+    total_cluster_count = len(clusters)
+    nonsingleton_count = len(nonsingleton_list)
+    singleton_count = total_cluster_count - nonsingleton_count
 
-    stats = {
+    count_stats = {
         "Total Cluster Count": total_cluster_count,
         "Singleton Cluster Count": singleton_count,
         "Non-Singleton Cluster Count": nonsingleton_count,
         "Percentage of Singleton Clusters": (singleton_count/total_cluster_count) * 100
     }
 
-    return stats
+    if nonsingleton_list:
+        min_size = np.min(nonsingleton_list)
+        q1, q2, q3 = np.percentile(nonsingleton_list, [25, 50, 75]) # median = q2
+        max_size = np.max(nonsingleton_list)
+
+        size_distribution = {
+        "Minimum Size": min_size,
+        "Quartile 1 (25%)": q1,
+        "Quartile 2 (median)": q2,
+        "Quartile 3 (75%)": q3,
+        "Maximum Size": max_size
+    }
+
+    if plot_boxplot:
+        plt.figure(figsize=(10,6))
+        plt.boxplot(nonsingleton_list, vert=True)
+        plt.title("Non-Singleton Cluster Size Distribution")
+        plt.ylabel("Cluster Size")
+        plt.grid(axis="y", linestyle="--", alpha=0.5)
+
+        plt.savefig(plot_path)
+        plt.show()
+
+    return count_stats, size_distribution
 
 
-#TODO: need part that computes size distribution of non-singleton clusters
+#TODO: need part to get node coverage
 
 
 if __name__ == '__main__':
@@ -71,14 +99,21 @@ if __name__ == '__main__':
     edgelist_path = sys.argv[1]
     quality_function = sys.argv[2]
 
+    dataset_name = os.path.basename(edgelist_path).split('.')[0] # referred to https://stackoverflow.com/questions/8384737/extract-file-name-from-path-no-matter-what-the-os-path-format
+    plot_path = f"./cluster_size_dist_{dataset_name}.png"
+
     # convert edgelist to network
     G = ig.Graph.Read_Edgelist(edgelist_path, directed=True)
+    # count node & edge count
     node_count = G.vcount()
     edge_count = G.ecount()
-    print(f"Checkpoint: iGraph Network created with {edgelist_path}", flush=True)
+    print(f"Checkpoint: iGraph Network created with {dataset_name}", flush=True)
     print(f"Node Count: {node_count}\nEdge Count: {edge_count}", flush=True)
 
     # run leiden algorithm (https://leidenalg.readthedocs.io/en/stable/intro.html)
     clusters = run_leiden_clustering(G, quality_function)
-    stats = compute_clustering_stats(clusters)
-    print(stats)
+
+    # get basic stats and size distribution
+    stats, distribution = compute_clustering_stats(clusters, plot_boxplot=True, plot_path=plot_path)
+    print("Basic Stats: ", stats)
+    print("Cluster Size Distribution: ", distribution)
