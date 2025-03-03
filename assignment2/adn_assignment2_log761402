@@ -1,0 +1,5 @@
+==========================Program Start==========================
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/cen_cleaned.tsv
+Node Count: 14695475
+Edge Count: 92051051
+Checkpoint: Running Leiden with cpm_0.01.
