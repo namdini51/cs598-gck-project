@@ -21,11 +21,11 @@ def run_leiden_clustering(G, quality_function):
     start_time = time.time() # check clustering start time
     
     if quality_function == "cpm_0.01":
-        cluster = la.find_partition(G, la.CPMVertexPartition, resolution_parameter=0.01)
+        clusters = la.find_partition(G, la.CPMVertexPartition, resolution_parameter=0.01)
     elif quality_function == "cpm_0.001":
-        cluster = la.find_partition(G, la.CPMVertexPartition, resolution_parameter=0.001)
+        clusters = la.find_partition(G, la.CPMVertexPartition, resolution_parameter=0.001)
     elif quality_function == "modularity":
-        cluster = la.find_partition(G, la.ModularityVertexPartition)
+        clusters = la.find_partition(G, la.ModularityVertexPartition)
     else:
         print("Invalid Quality Function - Choose from 1) cpm_0.01, 2) cpm_0.001, or 3) modularity.")
         sys.exit(1)
@@ -33,11 +33,34 @@ def run_leiden_clustering(G, quality_function):
     clustering_time = (time.time() - start_time) / 60 # get total clustering run time
     print(f"Total Runtime for Leiden {quality_function}: {clustering_time:.2f} minutes.", flush=True)
     
-    return cluster
+    return clusters
 
 
-def calculate_network_stats():
-    pass
+def compute_clustering_stats(clusters):
+    """
+    This function computes the count and percentage of singleton and non-singleton clusters
+    :param clusters: list of clusters extracted from the run_leiden_clustering function
+    :return: count and percentage of singleton and non-singleton clusters
+    """
+    singleton_count = 0
+    nonsingleton_count = 0
+
+    for cluster in clusters:
+        if len(cluster) == 1:    # only has one node
+            singleton_count += 1
+        else:
+            nonsingleton_count += 1
+
+    total_cluster_count = singleton_count + nonsingleton_count
+
+    stats = {
+        "Total Cluster Count": total_cluster_count,
+        "Singleton Cluster Count": singleton_count,
+        "Non-Singleton Cluster Count": nonsingleton_count,
+        "Percentage of Singleton Clusters": (singleton_count/total_cluster_count) * 100
+    }
+
+    return stats
 
 
 if __name__ == '__main__':
@@ -46,10 +69,13 @@ if __name__ == '__main__':
     quality_function = sys.argv[2]
 
     # convert edgelist to network
-    # edgelist_path = "./data/cit_hepph_cleaned.tsv"
     G = ig.Graph.Read_Edgelist(edgelist_path, directed=True)
+    node_count = G.vcount()
+    edge_count = G.ecount()
     print(f"Checkpoint: iGraph Network created with {edgelist_path}", flush=True)
+    print(f"Node Count: {node_count}\nEdge Count: {edge_count}", flush=True)
 
     # run leiden algorithm (https://leidenalg.readthedocs.io/en/stable/intro.html)
-    cluster = run_leiden_clustering(G, quality_function)
-    # cluster = run_leiden_clustering(G, "cpm_0.01")
+    clusters = run_leiden_clustering(G, quality_function)
+    stats = compute_clustering_stats(clusters)
+    print(stats)
