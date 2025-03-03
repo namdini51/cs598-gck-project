@@ -63,6 +63,9 @@ def compute_clustering_stats(clusters):
     return stats
 
 
+#TODO: need part that computes size distribution of non-singleton clusters
+
+
 if __name__ == '__main__':
     # set dataset directory & quality function to system arguments
     edgelist_path = sys.argv[1]
