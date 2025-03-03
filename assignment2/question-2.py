@@ -18,6 +18,8 @@ def run_leiden_clustering(G, quality_function):
     """
     print(f"Checkpoint: Running Leiden with {quality_function}.", flush=True)
 
+    start_time = time.time() # check clustering start time
+    
     if quality_function == "cpm_0.01":
         cluster = la.find_partition(G, la.CPMVertexPartition, resolution_parameter=0.01)
     elif quality_function == "cpm_0.001":
@@ -28,6 +30,9 @@ def run_leiden_clustering(G, quality_function):
         print("Invalid Quality Function - Choose from 1) cpm_0.01, 2) cpm_0.001, or 3) modularity.")
         sys.exit(1)
 
+    clustering_time = (time.time() - start_time) / 60 # get total clustering run time
+    print(f"Total Runtime for Leiden {quality_function}: {clustering_time:.2f} minutes.", flush=True)
+    
     return cluster
 
 
@@ -40,8 +45,6 @@ if __name__ == '__main__':
     edgelist_path = sys.argv[1]
     quality_function = sys.argv[2]
 
-    start_time = time.time() # check program start time
-
     # convert edgelist to network
     # edgelist_path = "./data/cit_hepph_cleaned.tsv"
     G = ig.Graph.Read_Edgelist(edgelist_path, directed=True)
@@ -50,6 +53,3 @@ if __name__ == '__main__':
     # run leiden algorithm (https://leidenalg.readthedocs.io/en/stable/intro.html)
     cluster = run_leiden_clustering(G, quality_function)
     # cluster = run_leiden_clustering(G, "cpm_0.01")
-
-    end_time = time.time() - start_time # get total run time
-    print(f"Total Runtime for Leiden {quality_function} on {edgelist_path}: {end_time:.2f} seconds.", flush=True)
