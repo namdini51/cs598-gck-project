@@ -1,6 +1,5 @@
 #!/bin/bash
-#Sample Batch Job Script
-#
+
 #SBATCH --time=12:00:00                    	# Job run time (hh:mm:ss)
 #SBATCH --mail-user="donginn2@illinois.edu"   	# Email address to alert when job starts/finishes
 #SBATCH --nodes=1                          	# Number of nodes
@@ -18,5 +17,9 @@ free -h
 # activate conda env
 conda activate cs598
 
+# system arguments
+EDGELIST_PATH="$1"
+QUALITY_FUNCTION="$2"
+
 #run my script
-python question-2.py
+python question-2.py "$EDGELIST_PATH" "$QUALITY_FUNCTION"
