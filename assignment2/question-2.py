@@ -39,30 +39,35 @@ def run_leiden_clustering(G, quality_function):
     return clusters
 
 
-def compute_clustering_stats(clusters, plot_boxplot=False, plot_path="./cluster_size_dist.png"):
+def compute_clustering_stats(clusters, total_nodes, plot_boxplot=False, plot_path="./cluster_size_dist.png"):
     """
-    This function computes basic stats (count and percentage) of singleton and non-singleton clusters.
-    It also computes the size distribution of non-singleton clusters (plotting is also available using the plot_boxplot flag).
+    This function computes the followings:
+    1. Basic stats - Count and percentage of singleton and non-singleton clusters & node coverage
+    2. Size distribution of non-singleton clusters (plotting is also available using the plot_boxplot flag).
     :param clusters: list of clusters extracted from the run_leiden_clustering function
+    :param total_nodes: total number of nodes in the original graph
     :param plot_boxplot: flag to enable plotting
     :param plot_path: default path and file name to save the plot
     :return: basic stats and size distribution
     """
     nonsingleton_list = []
+    nonsingleton_threshold = 11 # non-singleton cluster size threshold (11 in WCC paper)
 
     for cluster in clusters:
-        if len(cluster) > 1:
+        if len(cluster) > nonsingleton_threshold:
             nonsingleton_list.append(len(cluster))
 
     total_cluster_count = len(clusters)
     nonsingleton_count = len(nonsingleton_list)
     singleton_count = total_cluster_count - nonsingleton_count
+    nonsingleton_node_count = sum(nonsingleton_list) # for node coverage
 
-    count_stats = {
+    basic_stats = {
         "Total Cluster Count": total_cluster_count,
         "Singleton Cluster Count": singleton_count,
         "Non-Singleton Cluster Count": nonsingleton_count,
-        "Percentage of Singleton Clusters": (singleton_count/total_cluster_count) * 100
+        "Percentage of Singleton Clusters": (singleton_count/total_cluster_count) * 100,
+        "Node Coverage": (nonsingleton_node_count/total_nodes) * 100
     }
 
     if nonsingleton_list:
@@ -88,10 +93,7 @@ def compute_clustering_stats(clusters, plot_boxplot=False, plot_path="./cluster_
         plt.savefig(plot_path)
         plt.show()
 
-    return count_stats, size_distribution
-
-
-#TODO: need part to get node coverage
+    return basic_stats, size_distribution
 
 
 if __name__ == '__main__':
@@ -104,6 +106,7 @@ if __name__ == '__main__':
 
     # convert edgelist to network
     G = ig.Graph.Read_Edgelist(edgelist_path, directed=True)
+
     # count node & edge count
     node_count = G.vcount()
     edge_count = G.ecount()
@@ -114,6 +117,6 @@ if __name__ == '__main__':
     clusters = run_leiden_clustering(G, quality_function)
 
     # get basic stats and size distribution
-    stats, distribution = compute_clustering_stats(clusters, plot_boxplot=True, plot_path=plot_path)
+    stats, distribution = compute_clustering_stats(clusters, node_count, plot_boxplot=True, plot_path=plot_path)
     print("Basic Stats: ", stats)
     print("Cluster Size Distribution: ", distribution)
