@@ -1,0 +1,120 @@
+==============================Program Start==============================
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/cen_cleaned.tsv
+Node Count: 14695475
+Edge Count: 92051051
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 13.73 minutes.
+{'Total Cluster Count': 5006299, 'Singleton Cluster Count': 4621920, 'Non-Singleton Cluster Count': 384379, 'Percentage of Singleton Clusters': 92.32209262770762}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/cen_cleaned.tsv
+Node Count: 14695475
+Edge Count: 92051051
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 13.49 minutes.
+{'Total Cluster Count': 3244045, 'Singleton Cluster Count': 3137681, 'Non-Singleton Cluster Count': 106364, 'Percentage of Singleton Clusters': 96.72125386670038}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/cen_cleaned.tsv
+Node Count: 14695475
+Edge Count: 92051051
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 10.72 minutes.
+{'Total Cluster Count': 706295, 'Singleton Cluster Count': 706039, 'Non-Singleton Cluster Count': 256, 'Percentage of Singleton Clusters': 99.96375452183578}
+===============================Program End===============================
+==============================Program Start==============================
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/cit_hepph_cleaned.tsv
+Node Count: 9912554
+Edge Count: 420877
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 2.41 minutes.
+{'Total Cluster Count': 9880609, 'Singleton Cluster Count': 9879444, 'Non-Singleton Cluster Count': 1165, 'Percentage of Singleton Clusters': 99.9882092288036}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/cit_hepph_cleaned.tsv
+Node Count: 9912554
+Edge Count: 420877
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 2.91 minutes.
+{'Total Cluster Count': 9879587, 'Singleton Cluster Count': 9879142, 'Non-Singleton Cluster Count': 445, 'Percentage of Singleton Clusters': 99.99549576313261}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/cit_hepph_cleaned.tsv
+Node Count: 9912554
+Edge Count: 420877
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 3.31 minutes.
+{'Total Cluster Count': 9878091, 'Singleton Cluster Count': 9878008, 'Non-Singleton Cluster Count': 83, 'Percentage of Singleton Clusters': 99.99915975667768}
+===============================Program End===============================
+==============================Program Start==============================
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/cit_patents_cleaned.tsv
+Node Count: 6009555
+Edge Count: 16518947
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 2.53 minutes.
+{'Total Cluster Count': 2525474, 'Singleton Cluster Count': 2315824, 'Non-Singleton Cluster Count': 209650, 'Percentage of Singleton Clusters': 91.69858806703218}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/cit_patents_cleaned.tsv
+Node Count: 6009555
+Edge Count: 16518947
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 2.57 minutes.
+{'Total Cluster Count': 2311441, 'Singleton Cluster Count': 2265171, 'Non-Singleton Cluster Count': 46270, 'Percentage of Singleton Clusters': 97.99821842737929}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/cit_patents_cleaned.tsv
+Node Count: 6009555
+Edge Count: 16518947
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 2.86 minutes.
+{'Total Cluster Count': 2238515, 'Singleton Cluster Count': 2234787, 'Non-Singleton Cluster Count': 3728, 'Percentage of Singleton Clusters': 99.83346102215084}
+===============================Program End===============================
+==============================Program Start==============================
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/oc_integer_cleaned_el.tsv
+Node Count: 75025194
+Edge Count: 1363303678
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 197.33 minutes.
+{'Total Cluster Count': 8765776, 'Singleton Cluster Count': 5605810, 'Non-Singleton Cluster Count': 3159966, 'Percentage of Singleton Clusters': 63.951097997484766}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/oc_integer_cleaned_el.tsv
+Node Count: 75025194
+Edge Count: 1363303678
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 175.86 minutes.
+{'Total Cluster Count': 6693925, 'Singleton Cluster Count': 5653018, 'Non-Singleton Cluster Count': 1040907, 'Percentage of Singleton Clusters': 84.449975164048}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/oc_integer_cleaned_el.tsv
+Node Count: 75025194
+Edge Count: 1363303678
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 170.56 minutes.
+{'Total Cluster Count': 186067, 'Singleton Cluster Count': 0, 'Non-Singleton Cluster Count': 186067, 'Percentage of Singleton Clusters': 0.0}
+===============================Program End===============================
+==============================Program Start==============================
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/wiki_talk_cleaned.tsv
+Node Count: 2394385
+Edge Count: 4659565
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 0.98 minutes.
+{'Total Cluster Count': 1856068, 'Singleton Cluster Count': 1818622, 'Non-Singleton Cluster Count': 37446, 'Percentage of Singleton Clusters': 97.98250926151412}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/wiki_talk_cleaned.tsv
+Node Count: 2394385
+Edge Count: 4659565
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 0.74 minutes.
+{'Total Cluster Count': 830706, 'Singleton Cluster Count': 810293, 'Non-Singleton Cluster Count': 20413, 'Percentage of Singleton Clusters': 97.54269260123317}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/wiki_talk_cleaned.tsv
+Node Count: 2394385
+Edge Count: 4659565
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 0.41 minutes.
+{'Total Cluster Count': 2793, 'Singleton Cluster Count': 0, 'Non-Singleton Cluster Count': 2793, 'Percentage of Singleton Clusters': 0.0}
+===============================Program End===============================
+==============================Program Start==============================
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/wiki_topcats_cleaned.tsv
+Node Count: 1791489
+Edge Count: 25444207
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 2.37 minutes.
+{'Total Cluster Count': 197609, 'Singleton Cluster Count': 109216, 'Non-Singleton Cluster Count': 88393, 'Percentage of Singleton Clusters': 55.26873775991984}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/wiki_topcats_cleaned.tsv
+Node Count: 1791489
+Edge Count: 25444207
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 2.28 minutes.
+{'Total Cluster Count': 106309, 'Singleton Cluster Count': 81293, 'Non-Singleton Cluster Count': 25016, 'Percentage of Singleton Clusters': 76.46859626184049}
+Checkpoint: iGraph Network created with /projects/illinois/eng/shared/shared/CS598GCK-SP25/assig2_networks/wiki_topcats_cleaned.tsv
+Node Count: 1791489
+Edge Count: 25444207
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 1.46 minutes.
+{'Total Cluster Count': 34, 'Singleton Cluster Count': 0, 'Non-Singleton Cluster Count': 34, 'Percentage of Singleton Clusters': 0.0}
+===============================Program End===============================
