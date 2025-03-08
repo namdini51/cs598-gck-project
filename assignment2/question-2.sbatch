@@ -2,7 +2,7 @@
 
 #SBATCH --time=12:00:00                    	# Job run time (hh:mm:ss)
 #SBATCH --mail-user="donginn2@illinois.edu"   	# Email address to alert when job starts/finishes
-#SBATCH --nodes=2                          	# Number of nodes
+#SBATCH --nodes=1                          	# Number of nodes
 #SBATCH --gres=gpu:0                       	# Number of GPUs, use --gres=gpu:A10 to specify GPU model or --gres=gpu:A10:2 to specify both model and number of GPUs
 #SBATCH --ntasks-per-node=16                	# Number of cores per node
 #SBATCH --job-name=adn-cs598-assig2             # Name of job

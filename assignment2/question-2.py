@@ -51,7 +51,7 @@ def compute_clustering_stats(clusters, total_nodes, plot_boxplot=False, plot_pat
     :return: basic stats and size distribution
     """
     nonsingleton_list = []
-    nonsingleton_threshold = 11 # non-singleton cluster size threshold (11 in WCC paper)
+    nonsingleton_threshold = 10 # non-singleton cluster size threshold (10 in WCC paper - min size of cluster was 11)
 
     for cluster in clusters:
         if len(cluster) > nonsingleton_threshold:
