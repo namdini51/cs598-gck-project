@@ -86,6 +86,7 @@ def compute_clustering_stats(clusters, total_nodes, plot_boxplot=False, plot_pat
     if plot_boxplot:
         plt.figure(figsize=(10,6))
         plt.boxplot(nonsingleton_list, vert=True)
+        plt.yscale("log")
         plt.title("Non-Singleton Cluster Size Distribution")
         plt.ylabel("Cluster Size")
         plt.grid(axis="y", linestyle="--", alpha=0.5)
@@ -102,10 +103,12 @@ if __name__ == '__main__':
     quality_function = sys.argv[2]
 
     dataset_name = os.path.basename(edgelist_path).split('.')[0] # referred to https://stackoverflow.com/questions/8384737/extract-file-name-from-path-no-matter-what-the-os-path-format
-    plot_path = f"./cluster_size_dist_{dataset_name}.png"
+    plot_path = f"./cluster_size_dist_{dataset_name}_{quality_function}.png"
 
     # convert edgelist to network
-    G = ig.Graph.Read_Edgelist(edgelist_path, directed=True)
+    # G = ig.Graph.Read_Edgelist(edgelist_path, directed=True)  # Read_Edgelist function seems to return wrong node counts (edge count is okay)
+    # use Read_Ncol() instead of Read_Edgelist() -> referred to https://stackoverflow.com/questions/32513650/can-import-edgelist-to-igraph-python & https://igraph.discourse.group/t/the-difference-between-read-ncol-and-read-edgelist/1283/5 
+    G = ig.Graph.Read_Ncol(edgelist_path, directed=True)
 
     # count node & edge count
     node_count = G.vcount()

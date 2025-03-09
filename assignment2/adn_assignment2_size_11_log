@@ -1,0 +1,138 @@
+==============================Program Start==============================
+Checkpoint: iGraph Network created with cen_cleaned
+Node Count: 13989436
+Edge Count: 92051051
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 13.01 minutes.
+Basic Stats:  {'Total Cluster Count': 4307021, 'Singleton Cluster Count': 3939848, 'Non-Singleton Cluster Count': 367173, 'Percentage of Singleton Clusters': 91.47501254347262, 'Node Coverage': 71.02277032469357}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 17.0, 'Quartile 2 (median)': 21.0, 'Quartile 3 (75%)': 31.0, 'Maximum Size': 1541}
+Checkpoint: iGraph Network created with cen_cleaned
+Node Count: 13989436
+Edge Count: 92051051
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 12.66 minutes.
+Basic Stats:  {'Total Cluster Count': 2521314, 'Singleton Cluster Count': 2415267, 'Non-Singleton Cluster Count': 106047, 'Percentage of Singleton Clusters': 95.79397885388333, 'Node Coverage': 82.71730182689281}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 45.0, 'Quartile 2 (median)': 66.0, 'Quartile 3 (75%)': 108.0, 'Maximum Size': 11078}
+Checkpoint: iGraph Network created with cen_cleaned
+Node Count: 13989436
+Edge Count: 92051051
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 10.75 minutes.
+Basic Stats:  {'Total Cluster Count': 250, 'Singleton Cluster Count': 65, 'Non-Singleton Cluster Count': 185, 'Percentage of Singleton Clusters': 26.0, 'Node Coverage': 99.9978984142034}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 26.0, 'Quartile 2 (median)': 57.0, 'Quartile 3 (75%)': 379.0, 'Maximum Size': 1366970}
+===============================Program End===============================
+==============================Program Start==============================
+Checkpoint: iGraph Network created with cit_hepph_cleaned
+Node Count: 34546
+Edge Count: 420877
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 0.01 minutes.
+Basic Stats:  {'Total Cluster Count': 2614, 'Singleton Cluster Count': 2059, 'Non-Singleton Cluster Count': 555, 'Percentage of Singleton Clusters': 78.7681713848508, 'Node Coverage': 88.58912754009147}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 17.0, 'Quartile 2 (median)': 30.0, 'Quartile 3 (75%)': 62.5, 'Maximum Size': 461}
+Checkpoint: iGraph Network created with cit_hepph_cleaned
+Node Count: 34546
+Edge Count: 420877
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 0.01 minutes.
+Basic Stats:  {'Total Cluster Count': 1570, 'Singleton Cluster Count': 1453, 'Non-Singleton Cluster Count': 117, 'Percentage of Singleton Clusters': 92.54777070063695, 'Node Coverage': 93.97904243617205}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 28.0, 'Quartile 2 (median)': 67.0, 'Quartile 3 (75%)': 289.0, 'Maximum Size': 2699}
+Checkpoint: iGraph Network created with cit_hepph_cleaned
+Node Count: 34546
+Edge Count: 420877
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 0.01 minutes.
+Basic Stats:  {'Total Cluster Count': 84, 'Singleton Cluster Count': 66, 'Non-Singleton Cluster Count': 18, 'Percentage of Singleton Clusters': 78.57142857142857, 'Node Coverage': 99.45000868407341}
+Cluster Size Distribution:  {'Minimum Size': 14, 'Quartile 1 (25%)': 615.5, 'Quartile 2 (median)': 2004.0, 'Quartile 3 (75%)': 2996.5, 'Maximum Size': 4015}
+===============================Program End===============================
+==============================Program Start==============================
+Checkpoint: iGraph Network created with cit_patents_cleaned
+Node Count: 3774768
+Edge Count: 16518947
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 1.94 minutes.
+Basic Stats:  {'Total Cluster Count': 290723, 'Singleton Cluster Count': 145934, 'Non-Singleton Cluster Count': 144789, 'Percentage of Singleton Clusters': 50.196922844081826, 'Node Coverage': 85.23231096586599}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 12.0, 'Quartile 2 (median)': 15.0, 'Quartile 3 (75%)': 24.0, 'Maximum Size': 573}
+Checkpoint: iGraph Network created with cit_patents_cleaned
+Node Count: 3774768
+Edge Count: 16518947
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 1.89 minutes.
+Basic Stats:  {'Total Cluster Count': 77793, 'Singleton Cluster Count': 40452, 'Non-Singleton Cluster Count': 37341, 'Percentage of Singleton Clusters': 51.999537233427176, 'Node Coverage': 98.29205397523768}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 37.0, 'Quartile 2 (median)': 57.0, 'Quartile 3 (75%)': 113.0, 'Maximum Size': 1903}
+Checkpoint: iGraph Network created with cit_patents_cleaned
+Node Count: 3774768
+Edge Count: 16518947
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 1.95 minutes.
+Basic Stats:  {'Total Cluster Count': 3705, 'Singleton Cluster Count': 3615, 'Non-Singleton Cluster Count': 90, 'Percentage of Singleton Clusters': 97.57085020242914, 'Node Coverage': 99.72281740228803}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 14.0, 'Quartile 2 (median)': 14296.0, 'Quartile 3 (75%)': 73672.5, 'Maximum Size': 268429}
+===============================Program End===============================
+==============================Program Start==============================
+Checkpoint: iGraph Network created with oc_integer_cleaned
+Node Count: 75025194
+Edge Count: 1363303678
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 194.35 minutes.
+Basic Stats:  {'Total Cluster Count': 8783936, 'Singleton Cluster Count': 7007835, 'Non-Singleton Cluster Count': 1776101, 'Percentage of Singleton Clusters': 79.78012362567306, 'Node Coverage': 82.43059658066329}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 12.0, 'Quartile 2 (median)': 16.0, 'Quartile 3 (75%)': 29.0, 'Maximum Size': 2242}
+Checkpoint: iGraph Network created with oc_integer_cleaned_el
+Node Count: 75025194
+Edge Count: 1363303678
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 167.25 minutes.
+Basic Stats:  {'Total Cluster Count': 6695723, 'Singleton Cluster Count': 6291831, 'Non-Singleton Cluster Count': 403892, 'Percentage of Singleton Clusters': 93.96791056021881, 'Node Coverage': 90.19092173223837}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 34.0, 'Quartile 2 (median)': 44.0, 'Quartile 3 (75%)': 107.0, 'Maximum Size': 14945}
+Checkpoint: iGraph Network created with oc_integer_cleaned_el
+Node Count: 75025194
+Edge Count: 1363303678
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 172.31 minutes.
+Basic Stats:  {'Total Cluster Count': 183845, 'Singleton Cluster Count': 181518, 'Non-Singleton Cluster Count': 2327, 'Percentage of Singleton Clusters': 98.73425983845087, 'Node Coverage': 99.42384021026324}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 12.0, 'Quartile 2 (median)': 16.0, 'Quartile 3 (75%)': 23.0, 'Maximum Size': 10793536}
+===============================Program End===============================
+==============================Program Start==============================
+Checkpoint: iGraph Network created with wiki_talk_cleaned
+Node Count: 2394385
+Edge Count: 4659565
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 0.93 minutes.
+Basic Stats:  {'Total Cluster Count': 1948683, 'Singleton Cluster Count': 1934988, 'Non-Singleton Cluster Count': 13695, 'Percentage of Singleton Clusters': 99.29721765931144, 'Node Coverage': 16.823902588764962}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 14.0, 'Quartile 2 (median)': 23.0, 'Quartile 3 (75%)': 50.0, 'Maximum Size': 2629}
+Checkpoint: iGraph Network created with wiki_talk_cleaned
+Node Count: 2394385
+Edge Count: 4659565
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 0.73 minutes.
+Basic Stats:  {'Total Cluster Count': 838726, 'Singleton Cluster Count': 827221, 'Non-Singleton Cluster Count': 11505, 'Percentage of Singleton Clusters': 98.62827669584584, 'Node Coverage': 64.8912351188301}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 37.0, 'Quartile 2 (median)': 62.0, 'Quartile 3 (75%)': 163.0, 'Maximum Size': 1580}
+Checkpoint: iGraph Network created with wiki_talk_cleaned
+Node Count: 2394385
+Edge Count: 4659565
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 0.38 minutes.
+Basic Stats:  {'Total Cluster Count': 2750, 'Singleton Cluster Count': 2582, 'Non-Singleton Cluster Count': 168, 'Percentage of Singleton Clusters': 93.89090909090909, 'Node Coverage': 99.76787358758095}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 3192.25, 'Quartile 2 (median)': 5065.0, 'Quartile 3 (75%)': 9151.5, 'Maximum Size': 241145}
+===============================Program End===============================
+==============================Program Start==============================
+Checkpoint: iGraph Network created with wiki_topcats_cleaned
+Node Count: 1791489
+Edge Count: 25444207
+Checkpoint: Running Leiden with cpm_0.01.
+Total Runtime for Leiden cpm_0.01: 2.47 minutes.
+Basic Stats:  {'Total Cluster Count': 195729, 'Singleton Cluster Count': 138789, 'Non-Singleton Cluster Count': 56940, 'Percentage of Singleton Clusters': 70.90875649494966, 'Node Coverage': 83.27184816652516}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 13.0, 'Quartile 2 (median)': 16.0, 'Quartile 3 (75%)': 25.0, 'Maximum Size': 1578}
+Checkpoint: iGraph Network created with wiki_topcats_cleaned
+Node Count: 1791489
+Edge Count: 25444207
+Checkpoint: Running Leiden with cpm_0.001.
+Total Runtime for Leiden cpm_0.001: 2.41 minutes.
+Basic Stats:  {'Total Cluster Count': 106280, 'Singleton Cluster Count': 92711, 'Non-Singleton Cluster Count': 13569, 'Percentage of Singleton Clusters': 87.2327813323297, 'Node Coverage': 93.72577783062023}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 33.0, 'Quartile 2 (median)': 43.0, 'Quartile 3 (75%)': 80.0, 'Maximum Size': 9984}
+Checkpoint: iGraph Network created with wiki_topcats_cleaned
+Node Count: 1791489
+Edge Count: 25444207
+Checkpoint: Running Leiden with modularity.
+Total Runtime for Leiden modularity: 1.81 minutes.
+Basic Stats:  {'Total Cluster Count': 31, 'Singleton Cluster Count': 1, 'Non-Singleton Cluster Count': 30, 'Percentage of Singleton Clusters': 3.225806451612903, 'Node Coverage': 99.99960926357907}
+Cluster Size Distribution:  {'Minimum Size': 69, 'Quartile 1 (25%)': 5811.0, 'Quartile 2 (median)': 34296.0, 'Quartile 3 (75%)': 106386.75, 'Maximum Size': 274487}
+===============================Program End===============================
