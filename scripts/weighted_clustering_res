@@ -1,0 +1,18 @@
+==============================Program Start==============================
+Loading edgelist...
+Node Count: 11811051
+Edge Count: 64328119
+Checkpoint: Running Leiden with cpm_0.01 | edge_weights=True.
+Total Runtime for Leiden cpm_0.01: 8.48 minutes.
+Saved cluster assignments to: ./results/clusters_cpm_0.01_weighted.tsv
+Basic Stats:  {'Total Cluster Count': 1065001, 'Singleton Cluster Count': 669749, 'Non-Singleton Cluster Count': 395252, 'Percentage of Singleton Clusters': 62.887170997961505, 'Node Coverage': 90.76255787905751}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 15.0, 'Quartile 2 (median)': 20.0, 'Quartile 3 (75%)': 30.0, 'Maximum Size': 1143}
+Loading edgelist...
+Node Count: 11811051
+Edge Count: 64328119
+Checkpoint: Running Leiden with cpm_0.001 | edge_weights=True.
+Total Runtime for Leiden cpm_0.001: 8.26 minutes.
+Saved cluster assignments to: ./results/clusters_cpm_0.001_weighted.tsv
+Basic Stats:  {'Total Cluster Count': 703281, 'Singleton Cluster Count': 619038, 'Non-Singleton Cluster Count': 84243, 'Percentage of Singleton Clusters': 88.02143097851356, 'Node Coverage': 94.4296828453285}
+Cluster Size Distribution:  {'Minimum Size': 11, 'Quartile 1 (25%)': 46.0, 'Quartile 2 (median)': 73.0, 'Quartile 3 (75%)': 140.0, 'Maximum Size': 6071}
+===============================Program End===============================
