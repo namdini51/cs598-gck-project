@@ -5,10 +5,10 @@
 #SBATCH --nodes=1                          	# Number of nodes
 #SBATCH --gres=gpu:0                       	# Number of GPUs, use --gres=gpu:A10 to specify GPU model or --gres=gpu:A10:2 to specify both model and number of GPUs
 #SBATCH --ntasks-per-node=16                	# Number of cores per node
-#SBATCH --job-name=clustering             # Name of job
+#SBATCH --job-name=overlap-var             # Name of job
 #SBATCH --account=25sp-cs598gck-eng          	# Account
 #SBATCH --partition=eng-instruction       	# Parititon
-#SBATCH --output=adn_clustering_res_log%j          # output file name
+#SBATCH --output=adn_cluster_overlap_log%j          # output file name
 #SBATCH --mem=128G				# Request memory
 
 # check memory status
@@ -19,14 +19,4 @@ source ~/.bashrc
 conda activate cs598
 
 # set system arguments and dataset directory
-EDGELIST_PATH="/scratch/donginn2/data/opcitance/opcitance_v2/cleaned_dataset/pubmed_edgelist_final.tsv"
-#QUALITY_FUNCTIONS=("cpm_0.05" "cpm_0.01" "cpm_0.001")
-QUALITY_FUNCTIONS="cpm_0.01"
-
-# run my script over all datasets and quality functions
-echo "==============================Program Start=============================="
-for QUALITY_FUNCTION in "${QUALITY_FUNCTIONS[@]}"; do
-    python run-clustering.py "$EDGELIST_PATH" "$QUALITY_FUNCTION"
-done
-#python run-clustering.py "$EDGELIST_PATH" "$QUALITY_FUNCTIONS"
-echo "===============================Program End==============================="
+python check-cluster-overlap-variance.py

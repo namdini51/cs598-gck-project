@@ -12,6 +12,7 @@ import os
 import sys
 import time
 
+WEIGHT_FUNCTION = 'weight_frequency_log'  # try weight_frequency_log or weight_intent_only 
 
 def run_leiden_clustering(G, quality_function, use_weights):
     """
@@ -26,12 +27,14 @@ def run_leiden_clustering(G, quality_function, use_weights):
     
     weights_arg = 'weight' if use_weights else None
     
-    if quality_function == "cpm_0.01":
-        clusters = la.find_partition(G, la.CPMVertexPartition, resolution_parameter=0.01, weights=weights_arg)
+    if quality_function == "cpm_0.05":
+        clusters = la.find_partition(G, la.CPMVertexPartition, resolution_parameter=0.1, weights=weights_arg, seed=42)
+    elif quality_function == "cpm_0.01":
+        clusters = la.find_partition(G, la.CPMVertexPartition, resolution_parameter=0.01, weights=weights_arg, seed=42)
     elif quality_function == "cpm_0.001":
-        clusters = la.find_partition(G, la.CPMVertexPartition, resolution_parameter=0.001, weights=weights_arg)
+        clusters = la.find_partition(G, la.CPMVertexPartition, resolution_parameter=0.001, weights=weights_arg, seed=42)
     else:
-        print("Invalid Quality Function - Choose from 1) cpm_0.01, 2) cpm_0.001")
+        print("Invalid Quality Function - Choose from 1) cpm_0.05, 2) cpm_0.01, 3) cpm_0.001")
         sys.exit(1)
 
     clustering_time = (time.time() - start_time) / 60 # get total clustering run time
@@ -103,10 +106,20 @@ if __name__ == '__main__':
     edgelist_path = sys.argv[1]
     quality_function = sys.argv[2]
     
-    use_weights = False  # Toggle this as needed
+    use_weights = True  # TOGGLE THIS FOR WEIGHTED OR UNWEIGHTED
     mode = "weighted" if use_weights else "unweighted"
 
-    plot_path = f"./results/cluster_size_dist_{quality_function}_{mode}.png"
+    basename = os.path.basename(edgelist_path)
+    if "111" in basename:
+        weight_tag = "_111"
+    elif "312" in basename:
+        weight_tag = "_312"
+    elif "213" in basename:
+        weight_tag = "_213"
+    else:
+        weight_tag = ""  # baseline
+
+    plot_path = f"./results/size/cluster_size_dist_{quality_function}_{mode}{weight_tag}.png"
 
     # convert edgelist to network
     # G = ig.Graph.Read_Edgelist(edgelist_path, directed=True)  # Read_Edgelist function seems to return wrong node counts (edge count is okay)
@@ -116,12 +129,16 @@ if __name__ == '__main__':
     # Load edgelist with weights
     print(f"Loading edgelist...", flush=True)
     df = pd.read_csv(edgelist_path, sep="\t", dtype=str)
+    
+    df['pmid'] = df['pmid'].astype(str)
+    df['intxt_pmid'] = df['intxt_pmid'].astype(str)
+    
     edges = list(zip(df['pmid'], df['intxt_pmid']))
 
-    # create graph from edgelist
+    # create graph from edgelist 
     if use_weights:
-        df['weight_frequency_log'] = df['weight_frequency_log'].astype(float)
-        weights = df['weight_frequency_log'].tolist()
+        df[WEIGHT_FUNCTION] = df[WEIGHT_FUNCTION].astype(float)
+        weights = df[WEIGHT_FUNCTION].tolist()
         G = ig.Graph.TupleList(edges, directed=True)
         G.es['weight'] = weights
     else:
@@ -142,11 +159,34 @@ if __name__ == '__main__':
         'cluster_id': membership
     })
     
-    cluster_output_path = f"./results/clusters_{quality_function}_{mode}.tsv"
+    cluster_output_path = f"./results/membership/clusters_{quality_function}_{mode}{weight_tag}.tsv"
     cluster_df.to_csv(cluster_output_path, sep="\t", index=False)
     print(f"Saved cluster assignments to: {cluster_output_path}")
+    
+    G.write_pickle(f"./results/graph/graph_{quality_function}_{mode}{weight_tag}.pkl")
+    print(f"Saved graph object to: ./results/graph/graph_{quality_function}_{mode}{weight_tag}.pkl")
 
     # get basic stats and size distribution
     stats, distribution = compute_clustering_stats(clusters, node_count, plot_boxplot=True, plot_path=plot_path)
     print("Basic Stats: ", stats)
     print("Cluster Size Distribution: ", distribution)
+    
+    # Plot log-log in-degree distribution
+    if use_weights:
+        in_degrees = G.strength(mode="IN", weights='weight')
+    else:
+        in_degrees = G.degree(mode="IN")
+        
+    unique, counts = np.unique(in_degrees, return_counts=True)
+
+    plt.figure(figsize=(10, 6))
+    plt.scatter(unique, counts, alpha=0.7)
+    plt.xscale("log")
+    plt.yscale("log")
+    plt.xlabel("In-Degree (log scale)")
+    plt.ylabel("Frequency (log scale)")
+    plt.title("In-Degree Distribution (Log-Log)")
+    plt.grid(True, linestyle="--", alpha=0.5)
+
+    in_degree_plot_path = f"./results/indegree/in_degree_dist_{quality_function}_{mode}{weight_tag}.png"
+    plt.savefig(in_degree_plot_path)
